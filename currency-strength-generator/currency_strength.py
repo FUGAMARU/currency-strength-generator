@@ -2,7 +2,7 @@ import math
 import datetime
 import MetaTrader5 as mt5
 
-from constant import SYMBOLS, CURRENCIES
+from constant import SYMBOLS, CURRENCIES, UTC
 from mt5_api_function import get_latest_unixtime
 from file_operation import get_config
 from function import is_DST
@@ -45,7 +45,14 @@ def generate_currency_strength(target_datetime: datetime.datetime) -> dict[str, 
     while True:
         # v2(現在価格)の用意
         for symbol in SYMBOLS:
-            v2[symbol] = mt5.copy_rates_from(symbol, mt5.TIMEFRAME_M5, base_unixtime, 1)[0]["open"]
+            ohlc = mt5.copy_rates_from(symbol, mt5.TIMEFRAME_M5, base_unixtime, 1)
+
+            # データー欠損チェック
+            if not ohlc:
+                print(f"{symbol}の{datetime.datetime.fromtimestamp(base_unixtime, UTC)}(MT5表示)の価格データーが欠損しているため通貨強弱データーを作成することができません")
+                quit()
+
+            v2[symbol] = ohlc[0]["open"]
 
         # v1は起点の価格、v2は現在時刻の価格
         EURUSD = getVal(v1["EURUSD"], v2["EURUSD"])
