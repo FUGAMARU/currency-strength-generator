@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8">
+  <title>!DATEの通貨強弱</title>
+</head>
+
+<body>
+  <h3 style="text-align: center;">!DATEの通貨強弱</h3>
+
+  <div style="position:relative; width:90%;margin: 0 auto;">
+      <canvas id="myChart"></canvas>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/locale/ja.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chartjs-adapter-moment@1.0.0/dist/chartjs-adapter-moment.min.js"></script>
+
+  <script>
+    const tooltip = {
+      itemSort: (a, b) => {
+        return b.raw - a.raw
+      }
+    }
+
+    const myChart = new Chart((() => {
+      return document.getElementById("myChart");
+    })(), {
+      type: "line",
+      options: {
+        plugins: {
+          tooltip
+        },
+        elements: {
+          point:{
+            radius: 0
+          }
+        },
+        interaction: {
+          mode: "index",
+          intersect: false
+        },
+        scales: {
+          x: {
+            type: "time",
+            time: {
+              parser: "YYYY-MM-DDTHH:mm:ss",
+              unit: "hour",
+              stepSize: 3,
+              displayFormats: {
+                "hour": "HH:mm"
+              }
+            },
+            scaleLabel: {
+              display: true,
+              labelString: "時間"
+            }
+          },
+          y: {
+            ticks: {
+              stepSize: 20
+            }
+          }
+        }
+      },
+      data: {
+        labels: !UNIXTIME_LIST,
+        datasets: [
+          {
+            label: "USD",
+            data: !USD_VALUES,
+            borderColor: "rgba(255, 165, 0, 1)",
+            backgroundColor: "rgba(255, 165, 0, 0.1)"
+          },
+          {
+            label: "EUR",
+            data: !EUR_VALUES,
+            borderColor: "rgba(255, 0, 0, 1)",
+            backgroundColor: "rgba(255, 0, 0, 0.1)"
+          },
+          {
+            label: "JPY",
+            data: !JPY_VALUES,
+            borderColor: "rgba(0, 255, 255, 1)",
+            backgroundColor: "rgba(0, 255, 255, 0.1)"
+          },
+          {
+            label: "GBP",
+            data: !GBP_VALUES,
+            borderColor: "rgba(0, 255, 0, 1)",
+            backgroundColor: "rgba(0, 255, 0, 0.1)"
+          },
+          {
+            label: "AUD",
+            data: !AUD_VALUES,
+            borderColor: "rgba(0, 0, 255, 1)",
+            backgroundColor: "rgba(0, 0, 255, 0.1)"
+          },
+          {
+            label: "CHF",
+            data: !CHF_VALUES,
+            borderColor: "rgba(150, 100, 0, 1)",
+            backgroundColor: "rgba(150, 100, 0, 0.1)"
+          },
+          {
+            label: "CAD",
+            data: !CAD_VALUES,
+            borderColor: "rgba(128, 0, 128, 1)",
+            backgroundColor: "rgba(128, 0, 128, 0.1)"
+          },
+          {
+            label: "NZD",
+            data: !NZD_VALUES,
+            borderColor: "rgba(255, 0, 255, 1)",
+            backgroundColor: "rgba(255, 0, 255, 0.1)"
+          }
+        ]
+      }
+    })
+  </script>
+</body>
+</html>
