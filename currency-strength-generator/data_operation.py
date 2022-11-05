@@ -65,7 +65,7 @@ def generate_chartjs_html(formattedData: dict[str, list[str] | dict[str, list[fl
     target_date_str: str
         指定した日付の文字列
 
-    returns
+    Returns
     -------
     str
         通貨強弱データーをChart.jsで表示するHTMLソース
