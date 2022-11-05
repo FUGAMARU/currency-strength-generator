@@ -1,5 +1,6 @@
 {
     "MT5Account": 1234567,
     "MT5Password": "password",
-    "MT5Server": "Axiory-Demo"
+    "MT5Server": "Axiory-Demo",
+    "serverTimezone": "America/New_York"
 }
