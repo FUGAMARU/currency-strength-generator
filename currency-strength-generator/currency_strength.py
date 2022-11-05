@@ -19,7 +19,7 @@ def generate_currency_strength(target_datetime: datetime.datetime) -> dict[str, 
     Returns
     -------
     dict[str, list[list[int | float]]]
-      当該日の1日分の通貨強弱データー
+      1日分の通貨強弱データー
       {"USD": [[unixtime, 通貨強弱], [unixtime, 通貨強弱], ...], "EUR": [[unixtime, 通貨強弱], ...], "GBP": [...]}
     """
 
