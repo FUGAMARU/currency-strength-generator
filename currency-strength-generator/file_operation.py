@@ -26,4 +26,4 @@ def save_to_file(path: str, data: list[any] | dict[any, any]) -> None:
     """
 
     with open(path, "w") as file:
-        json.dump(data, file, indent=2)
+        json.dump(data, file, indent=4)
