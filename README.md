@@ -28,13 +28,13 @@
   **2. プロジェクトルートにある`config.json`を編集します**
   ```json
     {
-        "MT5Account": 1234567,
-        "MT5Password": "password",
-        "MT5Server": "Axiory-Demo",
+        "account": 1234567,
+        "password": "password",
+        "server": "Axiory-Demo",
         "serverTimezone": "America/New_York"
     }
   ```
-  MT5の口座番号を`MT5Account`に、MT5の口座パスワードを`MT5Password`に、接続先MT5サーバー名を`MT5Server`にそれぞれ記載します。
+  MT5の口座番号を`account`に、MT5の口座パスワードを`password`に、接続先MT5サーバー名を`server`にそれぞれ記載します。
 
   `serverTimezone`は、自分が使う口座のブローカーがサマータイムの切り替えに採用しているタイムゾーンを[pytzの形式](https://gist.github.com/heyalexej/8bf688fd67d7199be4a1682b3eec7568)で指定します。  
   大体のブローカー(日本含)はニューヨーク時間を採用しているので`"America/New_York"`を指定しますが、XMだとロンドン時間を採用しているので`"Europe/London"`と指定します。  
